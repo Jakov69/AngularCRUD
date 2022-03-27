@@ -1,0 +1,153 @@
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h1 style="color: aliceblue;">Angular CRUD</h1>
+        <div class="d-flex">
+            <button (click)="clickAddEmployee()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success" >Add Employee</button>
+        </div>
+    </div>
+</nav>
+
+<!-- class="table " -->
+<font size="1"  >
+<table class="table " >
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Ime</th>
+            <th scope="col">Prezime</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mob.</th>
+            <th scope="col">Iznos</th>
+            <th scope="col">Sisanje</th>
+            <th scope="col">Lakiranje</th>
+            <th scope="col">Bojanje</th>  
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+     <tr *ngFor="let row of employeeData">
+       <td>{{row.id}}</td>
+       <td>{{row.firstName}}</td>
+       <td>{{row.lastName}}</td>
+       <td>{{row.email}}</td>
+       <td>{{row.mobile}}</td>
+       <td>{{row.salary}}</td>
+       <td>{{row.sisanje}}</td>
+       <td>{{row.lakiranje}}</td>
+       <td>{{row.bojanje}}</td>
+        <td>
+          <button (click)="onEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Edit</button>
+          <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button>  
+          <!-- <button (click)="onEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="button1">Edit</button> -->
+          <!-- <button (click)="deleteEmployee(row)" class="button1">Delete</button>   -->
+        </td>
+     </tr>
+    </tbody>
+</table>
+</font>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Employee Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            
+            <form [formGroup]="formValue" >
+                <div class="mb-2">
+                  <label for="exampleInputEmail1" class="form-label">First Name</label>
+                  <input type="text" formControlName="firstName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Last Name</label>
+                  <input type="text" formControlName="lastName" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Email Id</label>
+                    <input type="text" formControlName="email" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Mobile Number</label>
+                    <input type="text" formControlName="mobile" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Salary</label>
+                    <input type="text" formControlName="salary" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" >Sisanje</label>
+                    <input type="checkbox" formControlName="sisanje"  id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" >Lakiranje</label>
+                    <input type="checkbox" formControlName="lakiranje"  id="exampleInputPassword1">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" >Bojanje</label>
+                    <input type="checkbox" formControlName="bojanje"  id="exampleInputPassword1">
+                  </div>
+                  <!-- <div class="mb-3 form-check" *ngFor="let duck of ducks">
+                    <label class="form-check-label" for="exampleCheck1"> {{duck}} </label>
+                    <input (click)="toggleSelectedDucks(duck)" type="checkbox" formControlName="sisanje"  class="form-check-input" id="exampleCheck1"  (ngModelChange)="toggleSelectedDucks(duck)" >
+                </div> -->
+
+<!-- 
+                <div class="mb-3 form-check" *ngFor="let duck of ducks">
+                    <label class="form-check-label" for="exampleCheck1"> {{duck}} </label>
+                    <!-- <input (click)="toggleSelectedDucks(duck)" type="checkbox"  class="form-check-input" id="exampleCheck1"  (ngModelChange)="toggleSelectedDucks(duck)" > -->
+                   <!--  <input  type="checkbox" formControlName="lakiranje"   id="exampleCheck1"  >
+
+                </div> -->
+                
+                    <!-- <label for="exampleInputPassword1" class="form-label">{{duck}}</label> -->
+                    <!-- <label for="scales" class="form-check-label"> {{ selectedDucks | json }}</label> -->
+                   
+                  
+                 
+
+                  <!-- {{ selectedDucks | json }} -->
+                  
+                   <!-- <div class="mb-3" *ngFor="let duck of ducks">
+                    <label for="exampleInputPassword1" class="form-label">Sisanje</label>
+                    <input (click)="toggleSelectedDucks(duck)" type="checkbox" class="form-check-input" id="exampleCheck1"  (ngModelChange)="toggleSelectedDucks(duck)" >
+
+                    <!-- <input type="text" formControlName="sisanje" class="form-control" id="exampleInputPassword1"> -->
+                  <!-- </div>  -->
+
+                  <!-- <div class="mb-3 form-check">
+                     name="{{ name }}" -->
+                    <!-- <ng-container *ngFor="let duck of ducks">
+                        <input type="checkbox" [name]="duck" ngModel (ngModelChange)="toggleSelectedDucks(duck)">{{ duck }}
+                      </ng-container> -->
+                  <!-- Selected ducks : {{ selectedDucks | json}} -->
+                <!-- </div>  -->
+                  <!-- <textarea name="test" [ngModel]="selectedDucksString"></textarea> -->
+
+                 
+                 <!-- name="{{ ducks}}" -->
+
+                
+                <!-- 
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                    <label class="form-check-label" for="exampleCheck2">lakiranje</label>
+                  </div>  -->
+                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" *ngIf="showAdd" (click)="postEmployeeDetails()" class="btn btn-primary">Add</button>
+          <button type="button" *ngIf="showUpdate" (click)="updateEmployeeDetails()" class="btn btn-primary">Update</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,30 @@
+{
+  "posts": [
+    {
+      "id": 10,
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "mobile": null,
+      "salary": null,
+      "sisanje": true,
+      "bojanje": true,
+      "lakiranje": null
+    },
+    {
+      "id": 11,
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "mobile": null,
+      "salary": null,
+      "sisanje": null,
+      "bojanje": null,
+      "lakiranje": true
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
